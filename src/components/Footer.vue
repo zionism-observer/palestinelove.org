@@ -1,11 +1,11 @@
 <template>
     <footer>
         <div class="links">
-            <a href="#" target="_blank">
+            <a href="https://techforpalestine.org" target="_blank">
                 <span>Tech for Palestine</span>
                 <div class="icon-container"><ArrowTopRightOnSquare /></div>
             </a>
-            <a href="#" target="_blank">
+            <a href="https://zionism.observer" target="_blank">
                 <span>Zionism Observer</span>
                 <div class="icon-container"><ArrowTopRightOnSquare /></div>
             </a>

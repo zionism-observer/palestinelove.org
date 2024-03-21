@@ -4,11 +4,11 @@
             <img src="@/assets/watermelon.svg" alt="PALESTINE LOVE LOGO" />
             <span>PALESTINE LOVE</span>
         </RouterLink>
-        <div class="links">
-            <RouterLink to="/social-media">SOCIAL MEDIA</RouterLink>
-            <RouterLink to="/websites">WEBSITES</RouterLink>
-            <RouterLink to="/contribute">CONTRIBUTE</RouterLink>
-            <RouterLink to="/docs">API DOCS</RouterLink>
+        <div class="links" :class="{ 'not-home': route.path !== '/' }">
+            <RouterLink to="/social-media" :class="{ 'current': route.path === '/social-media' }">SOCIAL MEDIA</RouterLink>
+            <RouterLink to="/websites" :class="{ 'current': route.path === '/websites' }">WEBSITES</RouterLink>
+            <RouterLink to="/contribute" :class="{ 'current': route.path === '/contribute' }">CONTRIBUTE</RouterLink>
+            <RouterLink to="/docs" :class="{ 'current': route.path === '/docs' }">API DOCS</RouterLink>
         </div>
         <button @click="isVisible = !isVisible" class="menu-button">
             <XMark v-if="isVisible" class="x" />
@@ -97,11 +97,26 @@ nav.invisible-nav.open {
 
 @media (min-width: 1024px) {
     header {
-        padding: 16px 24px;
+        padding: 0 24px 0 24px;
+    }
+
+    header .logo-link,
+    header .links a {
+        padding-bottom: 16px;
+        padding-top: 16px;
     }
 
     header .links {
         display: flex;
+    }
+
+    header .links.not-home {
+        color: var(--color-gray-2);
+    }
+
+    header .links a.current {
+        border-bottom: 2px solid var(--color-black);
+        color: var(--color-black);
     }
 
     header .menu-button {
@@ -110,10 +125,15 @@ nav.invisible-nav.open {
 }
 </style>
 
-<script setup>
+<script setup lang="ts">
 import Menu from "@/components/icons/Menu.vue"
-import {ref} from "vue"
+import {computed, ref, watch} from "vue"
 import XMark from "@/components/icons/XMark.vue";
+import {useRoute} from "vue-router";
+
+const route = useRoute()
 
 const isVisible = ref(false)
+
+const currentPath = computed(() => route.path)
 </script>

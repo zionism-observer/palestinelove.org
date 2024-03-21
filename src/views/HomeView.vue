@@ -139,16 +139,16 @@ ul .note {
 
 @media (min-width: 1024px) {
     main {
-        display: flex;
-        height: 100vh;
         padding-bottom: 0;
     }
 
     .image-container {
-        display: block;
-        flex-shrink: 0;
+        height: 100vh;
+        left: 0;
         padding: 0;
-        width: 41%; /* 592px */ /* deviation */
+        position: fixed;
+        top: 0;
+        width: 41vw; /* 592px */ /* deviation */
     }
 
     img {
@@ -158,8 +158,9 @@ ul .note {
     }
 
     .content-container {
-        padding: 172px 8.75vw 0 8.75vw; /* 172px 0 0 140px */ /* deviation */
-        width: 100%;
+        margin-left: 41vw;
+        min-height: 100vh;
+        padding: 172px 8.75vw 172px 8.75vw; /* 172px 0 0 140px */ /* deviation */
     }
 
     h1.mobile {

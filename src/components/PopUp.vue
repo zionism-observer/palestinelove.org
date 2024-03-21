@@ -1,13 +1,17 @@
 <template>
     <div :class="{ 'close': !isVisible }">
-        <p>This is an open-source directory. We neither vet nor endorse the resources in the database. Always conduct your own research before trusting any resource.</p>
+        <p>{{ label }}</p>
         <button @click="isVisible = !isVisible"><XMark /></button>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import XMark from "@/components/icons/XMark.vue"
-import {ref} from "vue"
+import {ref, defineProps} from "vue"
+
+defineProps<{
+    label: string
+}>()
 
 const isVisible = ref(true)
 </script>
@@ -25,7 +29,7 @@ div {
     padding: 16px;
     position: fixed;
     right: 16px;
-    transition: opacity 0.25s, transform 0.25s;
+    transition: opacity 0.25s;
     z-index: 20;
 }
 
@@ -53,7 +57,6 @@ button svg {
 .close {
     opacity: 0;
     pointer-events: none;
-    transform: translateY(25%);
 }
 
 @media (min-width: 1024px) {

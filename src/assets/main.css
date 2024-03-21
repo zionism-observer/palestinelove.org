@@ -30,16 +30,39 @@ button {
     outline: none;
 }
 
-/*
-.icon-container {
-    align-items: center;
-    display: flex;
-    height: 16px;
-    justify-content: center;
-    width: 16px;
+.main-container > img {
+    display: none;
 }
 
- */
+.main-container > div {
+    padding: 100px 16px 100px 16px;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+@media (min-width: 1024px) {
+    .main-container > img {
+        display: block;
+        height: 100vh;
+        left: 0;
+        object-fit: cover;
+        position: fixed;
+        top: 0;
+        width: 41vw; /* 592px */ /* deviation */
+    }
+
+    .main-container > div {
+        background-color: var(--color-gray-3);
+        margin-left: 41vw;
+        min-height: 100vh;
+        padding: 172px 8.75vw 172px 8.75vw; /* 172px 0 0 140px */ /* deviation */
+    }
+}
 
 @supports (font-variation-settings: normal) {
     body {
