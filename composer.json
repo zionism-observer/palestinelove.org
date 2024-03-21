@@ -1,0 +1,15 @@
+{
+    "name": "zionism-observer/palestinelove",
+    "type": "website",
+    "description": "Your directory of Palestine-related content",
+    "keywords": ["palestine", "liberation"],
+    "homepage": "https://palestinelove.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tech For Palestine",
+            "homepage": "http://techforpalestine.org",
+            "role": "Developer"
+        }
+    ],
+}
