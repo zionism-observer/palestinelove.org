@@ -135,5 +135,7 @@ const route = useRoute()
 
 const isVisible = ref(false)
 
-const currentPath = computed(() => route.path)
+watch(route, () => {
+    isVisible.value = false
+})
 </script>
