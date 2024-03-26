@@ -1,13 +1,13 @@
 <template>
     <div>
-        <h1>Social Media</h1>
+        <h1>Websites</h1>
         <div class="breadcrumb">
-            <RouterLink to="/social-media">Social media</RouterLink>
+            <RouterLink to="/">Home</RouterLink>
             <div class="icon-container"><Chevron /></div>
-            <RouterLink :to="`/social-media/${route.params.network}`">{{ route.params.network }}</RouterLink>
+            <RouterLink :to="`/social-media/${processUrl(route.path)}`">{{ processUrl(route.path) }}</RouterLink>
         </div>
-        <div v-if="socialMediaLinks.data" class="links">
-            <div v-for="link in instagramLinks">
+        <div v-if="websiteLinks.data" class="links">
+            <div v-if="getWebsites(websiteLinks.data).length > 0" v-for="link in getWebsites(websiteLinks.data)">
                 <div>
                     <a :href="link.url" target="_blank">{{ link.name }}</a>
                     <RouterLink to="/">Report</RouterLink>
@@ -15,9 +15,10 @@
                 <p v-if="link.description">{{ link.description }}</p>
                 <p v-else>No description.</p>
             </div>
+            <p v-else>No entries has been added for this category yet.</p>
         </div>
-        <div v-else-if="socialMediaLinks.error" class="error">
-            <p>{{ socialMediaLinks.error }}</p>
+        <div v-else-if="websiteLinks.error" class="error">
+            <p>{{ websiteLinks.error }}</p>
         </div>
         <div v-else>Loading...</div>
     </div>
@@ -25,16 +26,26 @@
 
 <script setup lang="ts">
 import Chevron from "@/components/icons/Chevron.vue"
-import fetchSocialMediaLinks from "@/store/socialMedia"
 import {computed} from "vue"
 import {useRoute} from "vue-router"
+import fetchWebsites from "@/store/website"
 
 const route = useRoute()
-const socialMediaLinks = fetchSocialMediaLinks()
+const websiteLinks = fetchWebsites()
 
-const instagramLinks = computed(() => {
-    return socialMediaLinks.data.filter(link => link.network.toLowerCase() === route.params.network)
-})
+function processUrl(url: string) {
+    return url
+        .replace("/websites/", "")
+        .replace(/%20/g, " ")
+}
+
+function getWebsites(websites) {
+    return websites.filter(link => {
+        return link.categories.some(c => {
+            return c.toLowerCase() === processUrl(route.path).toLowerCase()
+        })
+    })
+}
 </script>
 
 <style scoped>

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import SocialMediaIndexView from '../views/SocialMediaIndexView.vue'
 import SocialMediaView from '../views/SocialMediaView.vue'
+import WebsiteView from '../views/WebsiteView.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,6 +26,11 @@ const router = createRouter({
             path: '/social-media/:network',
             name: 'social-media',
             component: SocialMediaView
+        },
+        {
+            path: '/websites/:category',
+            name: 'websites',
+            component: WebsiteView
         },
     ]
 })

@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper">
+    <div class="wrapper" ref="wrapper">
         <button @click="isVisible = !isVisible">
             <span>{{ title }}</span>
             <Chevron :class="{ 'rotated': isVisible }" />
@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import Chevron from "@/components/icons/Chevron.vue"
-import {ref} from "vue"
+import {ref, onMounted, onUnmounted} from "vue"
 
 defineProps<{
     title: string
@@ -23,6 +23,16 @@ defineProps<{
 }>()
 
 const isVisible = ref(false)
+const wrapper = ref<HTMLElement | null>(null)
+
+function handleClickOutside(event: MouseEvent) {
+    if (wrapper.value && !wrapper.value.contains(event.target as Node)) {
+        isVisible.value = false;
+    }
+}
+
+onMounted(() => document.addEventListener('click', handleClickOutside))
+onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 </script>
 
 <style scoped>
@@ -42,6 +52,7 @@ button span {
 }
 
 svg {
+    fill: var(--color-black);
     width: 8px;
 }
 

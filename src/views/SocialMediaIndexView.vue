@@ -17,6 +17,7 @@
                     <div v-for="n in socialMediaLinks.data.slice(0, 3)">
                         <h3>{{ n.name }}</h3>
                         <p v-if="n.description" class="line-clamp-2">{{ n.description }}</p>
+                        <p v-else>No description.</p>
                         <div class="icons">
                             <a href="#" target="_blank"><YouTube /></a>
                             <a href="#" target="_blank"><Instagram /></a>
