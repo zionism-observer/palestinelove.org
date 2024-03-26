@@ -1,4 +1,5 @@
 <template>
+
     <div>
         <h1>Social Media</h1>
         <div class="breadcrumb">
@@ -10,7 +11,7 @@
             <div v-for="link in instagramLinks">
                 <div>
                     <a :href="link.url" target="_blank">{{ link.name }}</a>
-                    <RouterLink to="/">Report</RouterLink>
+                    <button @click="reportResource({ name: link.name, url: link.url })">Report</button>
                 </div>
                 <p v-if="link.description">{{ link.description }}</p>
                 <p v-else>No description.</p>
@@ -28,6 +29,7 @@ import Chevron from "@/components/icons/Chevron.vue"
 import fetchSocialMediaLinks from "@/store/socialMedia"
 import {computed} from "vue"
 import {useRoute} from "vue-router"
+import {isReportFormOpen, resourceBeingReported} from "@/store/isReportFormOpen"
 
 const route = useRoute()
 const socialMediaLinks = fetchSocialMediaLinks()
@@ -35,6 +37,11 @@ const socialMediaLinks = fetchSocialMediaLinks()
 const instagramLinks = computed(() => {
     return socialMediaLinks.data.filter(link => link.network.toLowerCase() === route.params.network)
 })
+
+function reportResource(obj: { name: string, url: string }) {
+    isReportFormOpen.value = !isReportFormOpen.value
+    resourceBeingReported.value = obj
+}
 </script>
 
 <style scoped>
@@ -85,13 +92,13 @@ h1 {
     justify-content: space-between;
 }
 
-.links a:nth-of-type(1) {
+.links a {
     font-size: 12px;
     font-weight: bold;
     line-height: 16px;
 }
 
-.links a:nth-of-type(2) {
+.links button {
     color: var(--color-gray-2);
     font-size: 10px;
     line-height: 16px;

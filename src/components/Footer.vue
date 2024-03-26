@@ -9,10 +9,10 @@
                 <span>Zionism Observer</span>
                 <div class="icon-container"><ArrowTopRightOnSquare /></div>
             </a>
-            <a href="/" target="_blank">
+            <RouterLink to="/docs">
                 <span>API Docs</span>
                 <div class="icon-container"><ArrowTopRightOnSquare /></div>
-            </a>
+            </RouterLink>
         </div>
     </footer>
 </template>

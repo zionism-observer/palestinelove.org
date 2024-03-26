@@ -5,7 +5,7 @@
             <Chevron :class="{ 'rotated': isVisible }" />
         </button>
         <div v-if="isVisible">
-            <RouterLink v-for="link in links" :to="link.url">{{ link.label }}</RouterLink>
+            <RouterLink v-for="link in links" :to="`/websites/${link.label.toLowerCase()}`">{{ link.label }}</RouterLink>
         </div>
     </div>
 </template>

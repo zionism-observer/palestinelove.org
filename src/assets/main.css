@@ -38,6 +38,21 @@ button {
     outline: none;
 }
 
+input,
+textarea,
+select {
+    border: none;
+    outline: none;
+}
+
+ul {
+    padding-left: 24px;
+}
+
+li {
+    display: list-item;
+}
+
 .main-container {
     padding-bottom: 56px;
     padding-top: 64px;
@@ -64,6 +79,10 @@ button {
     height: 16px;
     justify-content: center;
     width: 16px;
+}
+
+.no-scroll {
+    overflow: hidden;
 }
 
 @media (min-width: 768px) {

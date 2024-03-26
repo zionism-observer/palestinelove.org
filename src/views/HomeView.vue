@@ -20,19 +20,19 @@
                 <h2>access database</h2>
                 <ul>
                     <li>
-                        <RouterLink to="/">
+                        <RouterLink to="/docs">
                             <div class="text"><span>Use our API to retrieve resources in .jsonxsxformat</span></div>
                             <div class="icon-container"><ArrowRight /></div>
                         </RouterLink>
                     </li>
                     <li>
-                        <RouterLink to="/">
+                        <RouterLink to="/contribute">
                             <div class="text"><span>Add to database</span></div>
                             <div class="icon-container"><ArrowRight /></div>
                         </RouterLink>
                     </li>
                     <li>
-                        <RouterLink to="/">
+                        <RouterLink to="/report">
                             <div class="text"><span>Report resource</span></div>
                             <div class="icon-container"><ArrowRight /></div>
                         </RouterLink>
@@ -150,12 +150,7 @@ h2 {
 }
 
 ul {
-    padding-left: 24px;
     row-gap: 12px; /* original: 16px */
-}
-
-li {
-    display: list-item;
 }
 
 li a {
