@@ -3,12 +3,15 @@ import { RouterView } from 'vue-router'
 import Header from "@/components/Header.vue"
 import Footer from "@/components/Footer.vue"
 import PopUp from "@/components/PopUp.vue"
+import {getRandomImage} from "@/utils/utils"
+
+const img = getRandomImage()
 </script>
 
 <template>
     <Header />
     <div class="main-container">
-        <img src="@/assets/img2.png" alt="Image of two women with the flag of Palestine" />
+        <img :src="img.src" :alt="img.alt" />
         <RouterView />
     </div>
     <Footer />

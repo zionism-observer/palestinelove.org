@@ -14,6 +14,7 @@
                             <div class="icon-container"><ArrowRight /></div>
                         </RouterLink>
                     </li>
+                    <li v-if="item.title === 'access database'" class="note">Coming soon: Download resources in .xlxs format</li>
                 </ul>
             </div>
         </div>
@@ -122,6 +123,11 @@ li a {
 li svg {
     fill: var(--color-green-0);
     height: 11.2px;
+}
+
+.note {
+    color: var(--color-gray-2);
+    font-weight: bold;
 }
 
 @media (min-width: 768px) {

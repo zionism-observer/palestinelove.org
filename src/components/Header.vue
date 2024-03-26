@@ -37,7 +37,7 @@
                     { label: 'Donations', url: '/' }
                 ]"
             />
-            <RouterLink to="/">Social media</RouterLink>
+            <RouterLink to="/social-media">Social media</RouterLink>
         </div>
         <button @click="isVisible = !isVisible">
             <XMark v-if="isVisible" class="x-icon" />
