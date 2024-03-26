@@ -9,6 +9,10 @@
                 <span>Zionism Observer</span>
                 <div class="icon-container"><ArrowTopRightOnSquare /></div>
             </a>
+            <a href="/" target="_blank">
+                <span>API Docs</span>
+                <div class="icon-container"><ArrowTopRightOnSquare /></div>
+            </a>
         </div>
     </footer>
 </template>
@@ -21,6 +25,7 @@ import ArrowTopRightOnSquare from "./icons/ArrowTopRightOnSquare.vue"
 footer {
     background-color: var(--color-white);
     bottom: 0;
+    overflow: auto;
     padding: 16px 24px;
     position: fixed;
     width: 100%;
@@ -28,49 +33,24 @@ footer {
 }
 
 footer .links {
-    column-gap: 16px;
-    display: flex;
-    justify-content: center;
-}
-
-footer .links a:not(:first-of-type) {
-    border-left: 1px solid var(--color-gray-2);
-    padding-left: 16px;
+    column-gap: 24px;
+    flex-direction: row;
+    min-width: 450px;
 }
 
 footer .links a {
     align-items: center;
     column-gap: 4px;
-    display: flex;
-    font-size: 14px;
+    flex-direction: row;
+    font-size: 16px;
+}
+
+footer .links a span {
+    flex-shrink: 0;
 }
 
 footer .links a svg {
     fill: var(--color-green-0);
-    width: 14px; /* deviation */
-}
-
-.icon-container {
-    align-items: center;
-    display: flex;
-    height: 16px;
-    justify-content: center;
-    width: 16px;
-}
-
-@media (min-width: 1024px) {
-    footer .links {
-        column-gap: 24px;
-        justify-content: left;
-    }
-
-    footer .links a:not(:first-of-type) {
-        border-left: none;
-        padding-left: 0;
-    }
-
-    footer .links a {
-        font-size: 16px;
-    }
+    width: 12.8px;
 }
 </style>

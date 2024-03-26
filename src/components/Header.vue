@@ -1,135 +1,219 @@
+<!--
+<RouterLink to="/social-media" :class="{ 'current': route.path === '/social-media' }">SOCIAL MEDIA</RouterLink>
+-->
 <template>
-    <header>
+    <div class="navbar">
         <RouterLink to="/" class="logo-link">
             <img src="@/assets/watermelon.svg" alt="PALESTINE LOVE LOGO" />
-            <span>PALESTINE LOVE</span>
+            <div>PALESTINE LOVE</div>
         </RouterLink>
-        <div class="links" :class="{ 'not-home': route.path !== '/' }">
-            <RouterLink to="/social-media" :class="{ 'current': route.path === '/social-media' }">SOCIAL MEDIA</RouterLink>
-            <RouterLink to="/websites" :class="{ 'current': route.path === '/websites' }">WEBSITES</RouterLink>
-            <RouterLink to="/contribute" :class="{ 'current': route.path === '/contribute' }">CONTRIBUTE</RouterLink>
-            <RouterLink to="/docs" :class="{ 'current': route.path === '/docs' }">API DOCS</RouterLink>
+        <div class="links-for-large-screens">
+            <HeaderDropdown
+                title="Stay Informed"
+                :links="[
+                    { label: 'Evidence', url: '/' },
+                    { label: 'Historical Preservation', url: '/' },
+                    { label: 'News', url: '/' },
+                    { label: 'Publications', url: '/' },
+                    { label: 'Directory', url: '/' },
+                    { label: 'Martyrs', url: '/' }
+                ]"
+            />
+            <HeaderDropdown
+                title="Learn"
+                :links="[
+                    { label: 'History', url: '/' },
+                    { label: 'Culture', url: '/' },
+                    { label: 'Art', url: '/' },
+                    { label: 'Activism', url: '/' },
+                    { label: 'Education', url: '/' }
+                ]"
+            />
+            <HeaderDropdown
+                title="Get Involved"
+                :links="[
+                    { label: 'Boycott & Company Listings', url: '/' },
+                    { label: 'Non-profit Organizations', url: '/' },
+                    { label: 'Donations', url: '/' }
+                ]"
+            />
+            <RouterLink to="/">Social media</RouterLink>
         </div>
-        <button @click="isVisible = !isVisible" class="menu-button">
-            <XMark v-if="isVisible" class="x" />
-            <Menu v-else class="bars" />
+        <button @click="isVisible = !isVisible">
+            <XMark v-if="isVisible" class="x-icon" />
+            <Menu v-else class="bars-icon" />
         </button>
-    </header>
-    <nav class="invisible-nav" :class="{ 'open': isVisible }">
-        <RouterLink to="/social-media">SOCIAL MEDIA</RouterLink>
-        <RouterLink to="/websites">WEBSITES</RouterLink>
-        <RouterLink to="/contribute">CONTRIBUTE</RouterLink>
-        <RouterLink to="/docs">API DOCS</RouterLink>
-    </nav>
+    </div>
+    <div v-if="isVisible" class="navbar-dropdown-menu">
+        <div>
+            <button @click="isVisible = !isVisible">
+                <XMark v-if="isVisible" class="x-icon" />
+                <Menu v-else class="bars-icon" />
+            </button>
+        </div>
+        <div>
+            <HeaderMobileDropdown
+                title="Stay Informed"
+                :links="[
+                    { label: 'Evidence', url: '/' },
+                    { label: 'Historical Preservation', url: '/' },
+                    { label: 'News', url: '/' },
+                    { label: 'Publications', url: '/' },
+                    { label: 'Directory', url: '/' },
+                    { label: 'Martyrs', url: '/' }
+                ]"
+            />
+            <HeaderMobileDropdown
+                title="Learn"
+                :links="[
+                    { label: 'History', url: '/' },
+                    { label: 'Culture', url: '/' },
+                    { label: 'Art', url: '/' },
+                    { label: 'Activism', url: '/' },
+                    { label: 'Education', url: '/' }
+                ]"
+            />
+            <HeaderMobileDropdown
+                title="Get Involved"
+                :links="[
+                    { label: 'Boycott & Company Listings', url: '/' },
+                    { label: 'Non-profit Organizations', url: '/' },
+                    { label: 'Donations', url: '/' }
+                ]"
+            />
+            <RouterLink to="/">Social media</RouterLink>
+        </div>
+    </div>
 </template>
 
 <style>
-header {
+.bars-icon {
+    stroke: var(--color-black);
+    width: 24px;
+}
+
+.x-icon {
+    stroke: var(--color-black);
+    width: 16px;
+}
+
+.navbar {
     align-items: center;
     background-color: var(--color-white);
-    display: flex;
+    border-bottom: 2px solid rgba(166, 168, 172, 0.32);
+    flex-direction: row;
+    height: 64px;
     justify-content: space-between;
-    padding: 16px;
+    padding: 0 24px;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 40;
 }
 
-header .logo-link {
+.navbar .logo-link {
     align-items: center;
     column-gap: 8px;
-    display: flex;
+    flex-direction: row;
     font-weight: 600;
 }
 
-header .logo-link img {
-    width: 24px;
+.navbar .logo-link img {
+    height: 32px;
 }
 
-header .links {
-    color: var(--color-gray-0);
+.navbar .logo-link div {
+    display: none;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.links-for-large-screens {
     column-gap: 32px;
     display: none;
+    flex-direction: row;
+}
+
+.links-for-large-screens > a {
     font-size: 14px;
     font-weight: 500;
-    padding-right: 32px;
 }
 
-header .menu-button {
-    display: flex;
-}
-
-header .menu-button svg {
-    stroke: var(--color-black);
-}
-
-header .menu-button svg.bars {
-    width: 24px;
-}
-
-header .menu-button svg.x {
-    width: 16px;
-}
-
-nav.invisible-nav {
+.navbar-dropdown-menu {
     background-color: var(--color-white);
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.12);
     left: 0;
-    opacity: 0;
-    padding-left: 24px;
-    padding-top: 100px;
-    pointer-events: none;
     position: fixed;
-    row-gap: 32px;
     top: 0;
     transition: opacity 0.25s;
     width: 100vw;
     z-index: 30;
 }
 
-nav.invisible-nav.open {
-    opacity: 1;
-    pointer-events: initial;
+.navbar-dropdown-menu > div:nth-of-type(1) {
+    align-items: end;
+    border-bottom: 2px solid rgba(166, 168, 172, 0.32);
+    height: 64px;
+    justify-content: center;
+    padding: 0 24px;
 }
 
-@media (min-width: 1024px) {
-    header {
-        padding: 0 24px 0 24px;
+.navbar-dropdown-menu > div:nth-of-type(2) {
+    padding: 12px;
+}
+
+.navbar-dropdown-menu > div:nth-of-type(2) > a {
+    border-bottom: 1px solid rgba(166, 168, 172, 0.32);
+    font-size: 16px;
+    padding: 12px;
+}
+
+@media (min-width: 768px) {
+    .navbar {
+        padding-right: 48px;
     }
 
-    header .logo-link,
-    header .links a {
-        padding-bottom: 16px;
-        padding-top: 16px;
-    }
-
-    header .links {
+    .navbar .logo-link div {
         display: flex;
     }
 
-    header .links.not-home {
-        color: var(--color-gray-2);
+    .navbar-dropdown-menu {
+        left: auto;
+        right: 24px;
+        width: 300px;
+        z-index: 50;
+    }
+}
+
+@media (min-width: 1024px) {
+    .navbar {
+        padding: 0 36px;
     }
 
-    header .links a.current {
-        border-bottom: 2px solid var(--color-black);
-        color: var(--color-black);
-    }
-
-    header .menu-button {
+    .navbar > button {
         display: none;
+    }
+
+    .links-for-large-screens {
+        display: flex;
+    }
+}
+
+@media (min-width: 1366px) {
+    .navbar {
+        padding: 0 40px;
     }
 }
 </style>
 
 <script setup lang="ts">
 import Menu from "@/components/icons/Menu.vue"
-import {computed, ref, watch} from "vue"
-import XMark from "@/components/icons/XMark.vue";
-import {useRoute} from "vue-router";
+import {ref, watch} from "vue"
+import XMark from "@/components/icons/XMark.vue"
+import {useRoute} from "vue-router"
+import HeaderDropdown from "@/components/HeaderDropdown.vue"
+import HeaderMobileDropdown from "@/components/HeaderMobileDropdown.vue"
 
 const route = useRoute()
 

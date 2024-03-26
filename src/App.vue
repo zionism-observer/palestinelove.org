@@ -7,7 +7,10 @@ import PopUp from "@/components/PopUp.vue"
 
 <template>
     <Header />
-    <RouterView />
+    <div class="main-container">
+        <img src="@/assets/img2.png" alt="Image of two women with the flag of Palestine" />
+        <RouterView />
+    </div>
     <Footer />
     <PopUp label="This is an open-source directory. We neither vet nor endorse the resources in the database. Always conduct your own research before trusting any resource." />
 </template>

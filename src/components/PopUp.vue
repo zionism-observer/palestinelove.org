@@ -23,7 +23,7 @@ div {
     bottom: 64px;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(103, 110, 118, 0.16), 0 2px 5px 0 rgba(103, 110, 118, 0.08);
     column-gap: 16px;
-    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     left: 16px;
     padding: 16px;
@@ -41,7 +41,6 @@ p {
 
 button {
     align-items: center;
-    display: flex;
     flex-shrink: 0;
     height: 20px;
     justify-content: center;
