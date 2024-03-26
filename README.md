@@ -1,6 +1,6 @@
-# palestinelove.org
+# Palestinelove.org
 
-This template should help get you started developing with Vue 3 in Vite.
+Your directory of Palestine-related content. Built in Vue, with Vite.
 
 ## Recommended IDE Setup
 
